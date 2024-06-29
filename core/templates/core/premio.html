@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<!-- Titulo -->
+<h2 class="align-center2"> ¡Concursa por uno de estos productos! </h2>
+<h2 class="align-center2">Por compras superiores a $40.000 ya estas participando!</h2>
+
+<!-- Card para productos de la API-->
+<div class="container-fluid align-center2">
+  <div class="row juegos" id="card-ropa">
+    <!-- gif loading -->
+    <div id="loading-indicator">
+      <img class="m-5" width="60 rem" src="{% static 'core/img/loading.gif' %}" alt="Loading...">
+    </div>
+  </div>
+</div>
+<br/>
+
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'core/js/premio.js' %}"></script>
+{% endblock script %}

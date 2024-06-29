@@ -1,234 +1,124 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>playopolis.cl/boleta-784</title>
-    <link rel="stylesheet" href="css/style1.css" />
-    <!-- Script Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <!-- Script LOGOS Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/40f2d4fd97.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body class="fondo">
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
 
-    <!-- NavBar (Llamada desde script JS)-->
-    <div id="menu-adm"></div>
+{% block content %}
 
-    <h2 class="mx-5 mt-4"> Detalle de boleta 784</h2>
-    <div>
+    {% if boleta %} 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12"><br> 
+                    <h2 class="text-center text-primary fw-bolder">
+                        Boleta N°{{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}
+                    </h2>
+                </div>
+                <div class="col-md-6 col-sm-12 align-center2">
+                    <div class="table-responsive">
+                        <table class="mb-3" style="float: right">
+                            <tr>
+                                <td class="td_img_estado_boleta">
+                                    <img src="{% static 'core/img/vendido.png' %}" style="width: 75px;">
+                                </td>
+                                <td class="td_img_estado_boleta">
+                                    <img src="{% static 'core/img/despachado.png' %}" style="width: 75px;">
+                                </td>
+                                <td class="td_img_estado_boleta">
+                                    <img src="{% static 'core/img/entregado.png' %}" style="width: 75px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_fec_estado_boleta">
+                                    Vendido <br>
+                                    {{boleta.fecha_venta|formatear_fecha}}
+                                <td class="td_fec_estado_boleta">
+                                    Despachado <br>
+                                    {{boleta.fecha_despacho|formatear_fecha}}
+                                <td class="td_fec_estado_boleta">
+                                    Entregado <br>
+                                    {{boleta.fecha_entrega|formatear_fecha}}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </div>
-
-    <!-- Tabla carrito de compras -->
-    <div class="p-5">
-      <div class="table-responsive">
-        <table class="table table-light table-striped table-bordered" style="max-width: 100%;">
-          <thead class="table-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Categoria</th>
-              <th scope="col">Producto</th>
-              <th scope="col">Precio</th>
-              <th scope="col">%Subscriptor</th>
-              <th scope="col">%Oferta</th>
-              <th scope="col">%Desc. total</th>
-              <th scope="col">Descuentos</th>
-              <th scope="col">Precio a pagar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Videojuego</td>
-              <td>Juego Diablo IV</td>
-              <td>$30.000</td>
-              <td>10%</td>
-              <td>20%</td>
-              <td>30%</td>
-              <td>$9.000</td>
-              <td>$21.000</td>
-            </tr>
-            <tr>
-              <th scope="col">2</th>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>            
-            </tr>
-            <tr>
-              <th scope="col">3</th>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>            
-            </tr>
-              <th scope="col">4</th>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>            
-            </tr>
-            </tr>
-              <th scope="col">5</th>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>            
-            </tr>
-            </tr>
-              <th scope="col">6</th>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>            
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Estado y valores -->
-    <div class="container-fluid">
-      <div class="row">
-        <!-- Iconos de los estado de la boleta -->
-        <div class="col m-5">
-            <table id="boleta_tabla_estados">
-                <tr>
-                    <td>
-                        <img src="img/vendido.png" alt="">
-                    </td>
-                    <td>
-                        <img src="img/despachado.png" alt="">
-                    </td>
-                    <td>
-                        <img src="img/entregado.png" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Vendido <br>
-                        10/04/2024 <br>
-                        11:00
-                    </td>
-                    <td>
-                        Despachado <br>
-                        11/04/2024 <br>
-                        12:00
-                    </td>
-                    <td>
-                        Entregado <br>
-                        11/04/2024 <br>
-                        18:00
-                    </td>
-                </tr>
+        <div class="container card p-3 table-responsive">
+            <table id="tabla-principal" class="table table-hover round">
+                <thead>
+                    <tr>
+                        <th> Categoría </th>
+                        <th> Producto </th>
+                        <th> Precio </th>
+                        <th> % Descto <br> Subscriptor </th>
+                        <th> % Descto <br> Oferta </th>
+                        <th> % Descto <br> Total </th>
+                        <th class="text-end"> Descuentos </th>
+                        <th class="text-end"> Precio a pagar </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in detalle_boleta %}
+                        <tr>
+                            <td> {{ item.bodega.producto.categoria.nombre }} </td>
+                            <td> {{ item.bodega.producto.nombre }} </td>
+                            <td> {{ item.precio|formatear_dinero }} </td>
+                            <td> {{ item.descuento_subscriptor|formatear_porcentaje }} </td>
+                            <td> {{ item.descuento_oferta|formatear_porcentaje }} </td>
+                            <td> {{ item.descuento_total|formatear_porcentaje }} </td>
+                            <td class="text-end"> {{ item.descuentos|formatear_dinero }} </td>
+                            <td class="text-end"> {{ item.precio_a_pagar|formatear_dinero }} </td>
+                        </tr>
+                    {% endfor %}
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="fw-bold"> Precio sin IVA </td>
+                        <td class="fw-bold text-end"> {{ boleta.monto_sin_iva|formatear_dinero }} </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="fw-bold"> Valor del IVA (19%) </td>
+                        <td class="fw-bold text-end"> {{ boleta.iva|formatear_dinero }} </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="fw-bold"> Total a pagar </td>
+                        <td class="fw-bold text-end"> {{ boleta.total_a_pagar|formatear_dinero }} </td>
+                    </tr>
+                </tfoot>
+                </tbody>
             </table>
         </div>
-        <!-- Seccion Valores Totales -->
-        <div class="col">
-          <div class="d-flex justify-content-end" >
-            <div class="precios-totales rounded d-flex flex-column mx-5">
-              <div class="d-flex  ">
-                <div class="p-2" style="flex: 1;">Precio sin IVA</div>
-                <div class="p-2 border border-secondary-subtle border-2 rounded">$17.647</div>
-              </div>
-              <div class="d-flex mt-1">
-                <div class="p-2" style="flex: 1;">Valor del IVA (19%)</div>
-                <div class="p-2 border border-secondary-subtle border-2 rounded">$3.353</div>
-              </div>
-              <div class="d-flex mt-1">
-                <div class="p-2" style="flex: 1;">Total a pagar</div>
-                <div class="p-2 border border-secondary-subtle border-2 rounded">$21.000</div>
-              </div>
-            </div>
-          </div>
+
+
+
+    
+    {% else %}
+
+    
+    <div class="mx-5">
+        <div class="alert alert-danger align-center2" role="alert">
+            No se puede mostrar la boleta
         </div>
     </div>
-    
-      <br><br><br><br><br>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-      <div class="footer bg-dark text-light">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              <h5 class="margen-footer">Síguenos en redes sociales:</h5>
-              <div class="">
-                <p class="margen-footer">
-                  <a href="https://wa.me/+56912345678"
-                    ><i
-                      class="fa-brands fa-square-whatsapp fa-2xl"
-                      style="color: #63e6be"
-                    ></i
-                  ></a>
-                  <a href="https://www.facebook.com/PlayopolisStore"
-                    ><i
-                      class="fa-brands fa-square-facebook fa-2xl"
-                      style="color: #74c0fc"
-                    ></i
-                  ></a>
-                  <a href="https://www.instagram.com/PlayopolisStore"
-                    ><i
-                      class="fa-brands fa-square-instagram fa-2xl"
-                      style="color: #fd0269"
-                    ></i
-                  ></a>
-                </p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <h5 class="margen-footer">Dirección:</h5>
-              <p class="margen-footer">Moneda 627, Santiago.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Script Bootstrap -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+    {% endif %} 
     
-    <!-- Script jquery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-    <!-- Script carpeta JS -->
-    <script src="js/script.js"></script>
-    <script src="js/validador.js" type="text/javascript"></script>
-    
-  </body>
-</html>
+{% endblock content %}
