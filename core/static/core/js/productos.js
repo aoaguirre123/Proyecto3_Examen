@@ -5,16 +5,16 @@ $(document).ready(function() {
     if (select) {
         var defaultOption = select.querySelector('option[value=""]');
         if (defaultOption) {
-            defaultOption.text = "Seleccione una categoría";
+            defaultOption.text = "Seleccione categoría";
         }
     }
 
     // Asignar placeholders para ayudar a los usuarios
-    $('#id_nombre').attr('placeholder', 'Ej: Diablo 4, Uncharted 2, God of War 2');
-    $('#id_descripcion').attr('placeholder', 'Ej: Diablo IV es un juego de rol de acción de mazmorras desarrollado y publicado por Blizzard Entertainment.');
-    $('#id_precio').attr('placeholder', 'Ej: 35000');
-    $('#id_descuento_subscriptor').attr('placeholder', 'Ej: 10');
-    $('#id_descuento_oferta').attr('placeholder', 'Ej: 5');
+    $('#id_nombre').attr('placeholder', 'Ingrese nombre de producto');
+    $('#id_descripcion').attr('placeholder', 'Ingrese descripcion del producto');
+    $('#id_precio').attr('placeholder', 'Ingrese precio del producto');
+    $('#id_descuento_subscriptor').attr('placeholder', 'Descuento para subscriptores, Ej: 10');
+    $('#id_descuento_oferta').attr('placeholder', 'Descuento por oferta, Ej: 5');
 
     // Agregar una validación por defecto para que la imagen la exija como campo obligatorio
     $.extend($.validator.messages, {

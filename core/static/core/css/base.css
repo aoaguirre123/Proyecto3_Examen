@@ -17,12 +17,12 @@
 
 .error-message {
     color: red !important;
-    font-weight: bold !important;
+    font-weight: 600 !important;
 }
 
 .table-hover .letra-boleta-anulada td {
     color: red !important;
-    font-weight: bold !important;
+    font-weight: 600 !important;
 }
   
 .producto-sm {

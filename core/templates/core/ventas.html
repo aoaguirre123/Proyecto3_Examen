@@ -6,8 +6,8 @@
 <h2 class="m-3 align-center2">Historial de ventas</h2>
 
     <div class="container card p-3 mb-5 table-responsive">
-        <table id="tabla-principal" class="table table-hover table-striped">
-            <thead>
+        <table id="tabla-principal" class="table table-hover table-light table-striped table-bordered">
+            <thead class="table-dark">
                 <tr>
                     <th> Nro boleta </th>
                     <th> Cliente </th>
@@ -40,10 +40,10 @@
                         <td>
                             <span>
                                 <div class="btn-group">
-                                    <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a>
-                                    <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-success">Vender</a>
-                                    <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-primary">Despachar</a>
-                                    <a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-secondary">Entregar</a>
+                                    <div class="me-1"><a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Anulado' %}" class="btn btn-sm btn-danger">Anular</a></div>
+                                    <div class="me-1"><a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Vendido' %}" class="btn btn-sm btn-secondary">Vender</a></div>
+                                    <div class="me-1"><a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Despachado' %}" class="btn btn-sm btn-secondary">Despachar</a></div>
+                                    <div><a href="{% url 'cambiar_estado_boleta' boleta.nro_boleta 'Entregado' %}" class="btn btn-sm btn-success">Entregar</a></div>
                                 </div>
                             </span>
                         </td>

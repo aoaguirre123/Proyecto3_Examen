@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import inicio, registrarme, nosotros, productos
-from .views import usuarios, bodega, ventas, boleta, ingresar, usuarios
+from .views import usuarios, bodega, ventas, boleta, ingresar, usuarios, administracion
 from .views import misdatos, miscompras, salir, carrito, ficha
 from .views import cambiar_estado_boleta, poblar, obtener_productos, eliminar_producto_en_bodega
 from .views import premio, eliminar_producto_en_carrito, agregar_producto_al_carrito
@@ -33,4 +33,5 @@ urlpatterns = [
     path('comprar_ahora', comprar_ahora, name='comprar_ahora'),
     path('premio', premio, name='premio'),
     path('poblar', poblar, name='poblar'),
+    path('administracion', administracion, name='administracion')
 ]

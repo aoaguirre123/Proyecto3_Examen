@@ -4,112 +4,98 @@
 
 {% block content %}
 
-    {% if boleta %} 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12"><br> 
-                    <h2 class="text-center text-primary fw-bolder">
-                        Boleta N°{{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}
-                    </h2>
-                </div>
-                <div class="col-md-6 col-sm-12 align-center2">
-                    <div class="table-responsive">
-                        <table class="mb-3" style="float: right">
-                            <tr>
-                                <td class="td_img_estado_boleta">
-                                    <img src="{% static 'core/img/vendido.png' %}" style="width: 75px;">
-                                </td>
-                                <td class="td_img_estado_boleta">
-                                    <img src="{% static 'core/img/despachado.png' %}" style="width: 75px;">
-                                </td>
-                                <td class="td_img_estado_boleta">
-                                    <img src="{% static 'core/img/entregado.png' %}" style="width: 75px;">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td_fec_estado_boleta">
-                                    Vendido <br>
-                                    {{boleta.fecha_venta|formatear_fecha}}
-                                <td class="td_fec_estado_boleta">
-                                    Despachado <br>
-                                    {{boleta.fecha_despacho|formatear_fecha}}
-                                <td class="td_fec_estado_boleta">
-                                    Entregado <br>
-                                    {{boleta.fecha_entrega|formatear_fecha}}
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+  {% if boleta %} 
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center fw-bolder">
+        Boleta N°{{ boleta.nro_boleta }} de {{ boleta.cliente.usuario.first_name }} {{ boleta.cliente.usuario.last_name }}
+      </h2>
+    </div>
+  </div>
+
+  <div class="container card p-3 table-responsive mt-3">
+    <table id="tabla-principal" class="table table-hover table-light table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th> Categoría </th>
+          <th> Producto </th>
+          <th> Precio </th>
+          <th> % Descto <br> Subscriptor </th>
+          <th> % Descto <br> Oferta </th>
+          <th> % Descto <br> Total </th>
+          <th class="text-end"> Descuentos </th>
+          <th class="text-end"> Precio a pagar </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in detalle_boleta %}
+          <tr>
+            <td> {{ item.bodega.producto.categoria.nombre }} </td>
+            <td> {{ item.bodega.producto.nombre }} </td>
+            <td> {{ item.precio|formatear_dinero }} </td>
+            <td> {{ item.descuento_subscriptor|formatear_porcentaje }} </td>
+            <td> {{ item.descuento_oferta|formatear_porcentaje }} </td>
+            <td> {{ item.descuento_total|formatear_porcentaje }} </td>
+            <td class="text-end"> {{ item.descuentos|formatear_dinero }} </td>
+            <td class="text-end"> {{ item.precio_a_pagar|formatear_dinero }} </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container">
+      <div class="row">
+        <!-- Iconos de los estado de la boleta -->
+        <div class="col m-auto mx-3 ">
+          <table id="boleta_tabla_estados">
+            <tr>
+              <td class="td_img_estado_boleta">
+                <img src="{% static 'core/img/vendido.png' %}" style="width: 75px;">
+              </td>
+              <td class="td_img_estado_boleta">
+                <img src="{% static 'core/img/despachado.png' %}" style="width: 75px;">
+              </td>
+              <td class="td_img_estado_boleta">
+                <img src="{% static 'core/img/entregado.png' %}" style="width: 75px;">
+              </td>
+            </tr>
+            <tr>
+              <td class="td_fec_estado_boleta">
+                Vendido <br>
+                {{boleta.fecha_venta|formatear_fecha}}
+              <td class="td_fec_estado_boleta">
+                Despachado <br>
+                {{boleta.fecha_despacho|formatear_fecha}}
+              <td class="td_fec_estado_boleta">
+                Entregado <br>
+                {{boleta.fecha_entrega|formatear_fecha}}
+            </tr>
+          </table>
+        </div>
+        <!-- Seccion Valores Totales -->
+        <div class="col">
+          <div class="d-flex justify-content-end" >
+            <div class="precios-totales rounded d-flex flex-column mt-3">
+              <div class="d-flex  ">
+                <div class="p-2 fw-bolder" style="flex: 1;">Precio sin IVA</div>
+                <div class="p-2 border border-secondary-subtle border-2 rounded fw-semibold">{{ boleta.monto_sin_iva|formatear_dinero }}</div>
+              </div>
+              <div class="d-flex mt-1">
+                <div class="p-2 fw-bolder" style="flex: 1;">Valor del IVA (19%)</div>
+                <div class="p-2 border border-secondary-subtle border-2 rounded fw-semibold">{{ boleta.iva|formatear_dinero }}</div>
+              </div>
+              <div class="d-flex mt-1">
+                <div class="p-2 fw-bolder" style="flex: 1;">Total a pagar</div>
+                <div class="p-2 border border-secondary-subtle border-2 rounded fw-semibold">{{ boleta.total_a_pagar|formatear_dinero }}</div>
+              </div>
             </div>
+          </div>
         </div>
+    </div>
+  </div>
 
-        <div class="container card p-3 table-responsive">
-            <table id="tabla-principal" class="table table-hover round">
-                <thead>
-                    <tr>
-                        <th> Categoría </th>
-                        <th> Producto </th>
-                        <th> Precio </th>
-                        <th> % Descto <br> Subscriptor </th>
-                        <th> % Descto <br> Oferta </th>
-                        <th> % Descto <br> Total </th>
-                        <th class="text-end"> Descuentos </th>
-                        <th class="text-end"> Precio a pagar </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in detalle_boleta %}
-                        <tr>
-                            <td> {{ item.bodega.producto.categoria.nombre }} </td>
-                            <td> {{ item.bodega.producto.nombre }} </td>
-                            <td> {{ item.precio|formatear_dinero }} </td>
-                            <td> {{ item.descuento_subscriptor|formatear_porcentaje }} </td>
-                            <td> {{ item.descuento_oferta|formatear_porcentaje }} </td>
-                            <td> {{ item.descuento_total|formatear_porcentaje }} </td>
-                            <td class="text-end"> {{ item.descuentos|formatear_dinero }} </td>
-                            <td class="text-end"> {{ item.precio_a_pagar|formatear_dinero }} </td>
-                        </tr>
-                    {% endfor %}
-                <tfoot>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="fw-bold"> Precio sin IVA </td>
-                        <td class="fw-bold text-end"> {{ boleta.monto_sin_iva|formatear_dinero }} </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="fw-bold"> Valor del IVA (19%) </td>
-                        <td class="fw-bold text-end"> {{ boleta.iva|formatear_dinero }} </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="fw-bold"> Total a pagar </td>
-                        <td class="fw-bold text-end"> {{ boleta.total_a_pagar|formatear_dinero }} </td>
-                    </tr>
-                </tfoot>
-                </tbody>
-            </table>
-        </div>
-
-
-
-    
-    {% else %}
+  {% else %}
 
     
     <div class="mx-5">

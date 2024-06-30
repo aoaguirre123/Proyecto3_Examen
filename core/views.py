@@ -67,6 +67,10 @@ def inicio(request):
     
     return render(request, 'core/inicio.html', context)
 
+@user_passes_test(es_personal_autenticado_y_activo)
+def administracion(request):
+    return render(request, 'core/administracion.html')
+
 def ficha(request, producto_id):
     context = obtener_info_producto(producto_id)
     print(context)

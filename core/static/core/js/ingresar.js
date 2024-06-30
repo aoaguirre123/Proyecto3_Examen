@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
   // Asignar placeholders para ayudar a los usuarios
-  $('#id_username').attr('placeholder', 'Ej: cgomezv, cevans, sjohasson');
-  $('#id_password').attr('placeholder', 'Ingesa tu contraseña actual');
+  $('#id_username').attr('placeholder', 'Ingrese su usuario');
+  $('#id_password').attr('placeholder', 'Ingrese tu contraseña');
 
   $('#form').validate({ 
       rules: {
@@ -15,7 +15,7 @@ $(document).ready(function() {
       },
       messages: {
         'username': {
-          required: 'Debe ingresar un nombre de usuario',
+          required: 'Debe ingresar un usuario',
         },
         'password': {
           required: 'Debe ingresar una contraseña',

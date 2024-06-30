@@ -12,14 +12,14 @@
     </div>
       <div class="row m-3">
         <!-- AREA DE DATOS BASICOS: username, nombre, apellidos, correo y contraseñas -->
-        <div class="col-sm-12 col-md-7">
+        <div class="col-lg-6 col-sm-12 col-md-7">
           {{ form_usuario|as_bootstrap_form:'help_text_visible=False'}}
           <!-- AREA DE DATOS DE PERFIL: rut, dirección y subscrito (VER COMENTARIO "CHECKBOX SUBSCRITO" en script.js)  -->
           {{ form_perfil|as_bootstrap_form:'help_text_visible=False'}}
         </div>
 
         <!-- AREA DE IMAGEN DE PERFIL -->
-        <div class="col-sm-12 col-md-5 d-flex flex-column justify-content-center align-items-center">
+        <div class="col-lg-6 col-sm-12 col-md-5 d-flex flex-column justify-content-center align-items-center">
           <div class="row">
             <!-- AREA DE CUADRO DE IMAGEN: Muestra la Imagen de perfil -->
             <div class="col-sm-12" style="height: 220px">

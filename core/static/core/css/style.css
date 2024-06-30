@@ -1,14 +1,14 @@
-h1 {
+/* h1 {
   font-size: x-large;
   color: blue !important;
   font-weight: bolder;
   margin-bottom: 20px;
   text-align: center;
-}
+} */
 
 th {
   vertical-align: top;
-  background-color: lightgray !important;
+  /* background-color: lightgray !important; */
 }
 
 input, textarea, select {
@@ -106,7 +106,7 @@ input, textarea, select {
 
 .precios-totales {
   padding: 1rem;
-  border: 2px solid rgb(195, 195, 195);
+  border: 1px solid rgb(195, 195, 195);
   display: flex;
   justify-content: end;
   background-color: white;

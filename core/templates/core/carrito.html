@@ -4,89 +4,80 @@
 
 {% block content %}
     
-    <h1> Carrito de compras </h1>
+  <h1 class="text-center m-4"> Carrito de compras </h1>
 
-    <div class="container card p-3">
-        <table id="tabla-principal" class="table table-hover round">
-            <thead>
-                <tr>
-                    <th> ID </th>
-                    <th> Categoría </th>
-                    <th> Producto </th>
-                    <th> Precio </th>
-                    <th> % Descto <br> Subscriptor </th>
-                    <th> % Descto <br> Oferta </th>
-                    <th> % Descto <br> Total </th>
-                    <th class="text-end"> Descuentos </th>
-                    <th class="text-end"> Precio a pagar </th>
-                    <th> Opciones </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in detalle_carrito %}
-                    <tr>
-                        <td> {{ item.id }} </td>
-                        <td> {{ item.producto.categoria.nombre }} </td>
-                        <td> {{ item.producto.nombre }} </td>
-                        <td> {{ item.precio|formatear_dinero }} </td>
-                        <td> {{ item.descuento_subscriptor|formatear_porcentaje }} </td>
-                        <td> {{ item.descuento_oferta|formatear_porcentaje }} </td>
-                        <td> {{ item.descuento_total|formatear_porcentaje }} </td>
-                        <td class="text-end"> {{ item.descuentos|formatear_dinero }} </td>
-                        <td class="text-end"> {{ item.precio_a_pagar|formatear_dinero }} </td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="{% url 'ficha' item.producto.id %}" class="btn btn-sm btn-primary"> Detalle </a> 
-                                <a href="{% url 'eliminar_producto_en_carrito' item.id %}" class="btn btn-sm btn-danger"> Eliminar </a> 
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="fw-bold"> Precio sin IVA </td>
-                    <td class="fw-bold text-end"> {{ monto_sin_iva|formatear_dinero }} </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="fw-bold"> Valor del IVA (19%) </td>
-                    <td class="fw-bold text-end"> {{ iva|formatear_dinero }} </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="fw-bold"> Total a pagar </td>
-                    <td class="fw-bold text-end"> {{ total_a_pagar|formatear_dinero }} </td>
-                    <td></td>
-                </tr>
-            </tfoot>
-            </tbody>
-        </table>
-
-        <div class="text-center">
-            <a href="{% url 'vaciar_carrito' %}" class="btn btn-danger"> Vaciar carrito </a>
-            <a href="{% url 'comprar_ahora' %}" class="btn btn-success"> Continuar al pago </a>
-        </div>
-    </div>
+  <div class="container card p-3">
+    <table id="tabla-principal" class="table table-hover table-light table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th> ID </th>
+          <th> Categoría </th>
+          <th> Producto </th>
+          <th> Precio </th>
+          <th> % Descto <br> Subscriptor </th>
+          <th> % Descto <br> Oferta </th>
+          <th> % Descto <br> Total </th>
+          <th class="text-end"> Descuentos </th>
+          <th class="text-end"> Precio a pagar </th>
+          <th> Opciones </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in detalle_carrito %}
+          <tr>
+            <td> {{ item.id }} </td>
+            <td> {{ item.producto.categoria.nombre }} </td>
+            <td> {{ item.producto.nombre }} </td>
+            <td> {{ item.precio|formatear_dinero }} </td>
+            <td> {{ item.descuento_subscriptor|formatear_porcentaje }} </td>
+            <td> {{ item.descuento_oferta|formatear_porcentaje }} </td>
+            <td> {{ item.descuento_total|formatear_porcentaje }} </td>
+            <td class="text-end"> {{ item.descuentos|formatear_dinero }} </td>
+            <td class="text-end"> {{ item.precio_a_pagar|formatear_dinero }} </td>
+            <td>
+              <div class="btn-group">
+                <div class="me-1"><a href="{% url 'ficha' item.producto.id %}" class="btn btn-sm btn-primary"> Detalle </a> </div>
+                <div><a href="{% url 'eliminar_producto_en_carrito' item.id %}" class="btn btn-sm btn-danger"> Eliminar </a></div> 
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
     
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Seccion Valores Totales -->
+      <div class="col">
+        <div class="d-flex justify-content-end" >
+          <div class="precios-totales rounded d-flex flex-column mt-3">
+            <div class="d-flex  ">
+              <div class="p-2 fw-bolder" style="flex: 1;">Precio sin IVA</div>
+              <div class="p-2 border border-secondary-subtle border-2 rounded fw-semibold">{{ monto_sin_iva|formatear_dinero }}</div>
+            </div>
+            <div class="d-flex mt-1">
+              <div class="p-2 fw-bolder" style="flex: 1;">Valor del IVA (19%)</div>
+              <div class="p-2 border border-secondary-subtle border-2 rounded fw-semibold">{{ iva|formatear_dinero }}</div>
+            </div>
+            <div class="d-flex mt-1">
+              <div class="p-2 fw-bolder" style="flex: 1;">Total a pagar</div>
+              <div class="p-2 border border-secondary-subtle border-2 rounded fw-semibold">{{ total_a_pagar|formatear_dinero }}</div>
+            </div>
+          </div>
+        </div>
+        <!-- Boton cancelar y pagar -->
+        <div class="d-flex botones-totales mx-3">
+          <div>
+          <a href="{% url 'vaciar_carrito' %}" class="btn btn-secondary">Vaciar Carrito</a>
+          </div>
+          <div class="mx-1">
+            <a href="{% url 'comprar_ahora' %}" class="btn btn-primary">Pagar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 {% endblock content %}

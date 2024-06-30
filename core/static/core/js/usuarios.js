@@ -1,14 +1,12 @@
 $(document).ready(function() {
 
   // Asignar placeholders para ayudar a los usuarios
-  $('#id_username').attr('placeholder', 'Ej: cgomezv, cevans, sjohasson');
-  $('#id_first_name').attr('placeholder', 'Ej: Cristián, Chris, Scarlett');
-  $('#id_last_name').attr('placeholder', 'Ej: Gómez Vega, Evans, Johansson');
-  $('#id_email').attr('placeholder', 'Ej: cevans@marvels.com');
-  $('#id_rut').attr('placeholder', 'Ej: 11111111-1 (sin puntos y con guión)');
-  $('#id_direccion').attr('placeholder', 'Calle, n° casa o edificio, n° departamento o piso\n'
-    + 'localidad o ciudad, código postal o de área\n'
-    + 'estado o provincia, ciudad, país');
+  $('#id_username').attr('placeholder', 'Ingrese un nombre de usuario');
+  $('#id_first_name').attr('placeholder', 'Ingrese sus nombres');
+  $('#id_last_name').attr('placeholder', 'Ingrese sus apellidos');
+  $('#id_email').attr('placeholder', 'Ingrese su correo electrónico');
+  $('#id_rut').attr('placeholder', 'Ingrese su RUT (sin puntos y con guión)');
+  $('#id_direccion').attr('placeholder', 'Ingrese su dirección');
 
   // Cambiar el texto del combo de Tipo de usuario por "Seleccione un tipo de usuario"
   var select = document.querySelector('select[name="tipo_usuario"]');
