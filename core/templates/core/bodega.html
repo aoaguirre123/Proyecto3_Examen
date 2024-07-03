@@ -36,6 +36,15 @@
           <!-- Boton Agregar -->
           <div class="m-2 align-center2">
             <button
+              type="reset"
+              id="btn-example-file-reset"
+              name="btn-example-file-reset"
+              class="btn btn-secondary btn-block m-1"
+              style="width: 6rem"
+            >
+              Limpiar
+            </button>
+            <button
               type="submit"
               class="btn btn-primary btn-block m-1"
               style="width: 6rem"
@@ -97,4 +106,14 @@
 {% block script %}
     <input type="hidden" id="url_obtener_productos" value="{% url 'obtener_productos' %}">
     <script src="{% static 'core/js/bodega.js' %}"></script>
+    <script type="text/javascript">
+    $('#btn-example-file-reset').on('click', function(e){
+      var $el = $('#file-input');
+      $el.wrap('<form>').closest('form').get();
+      $el.unwrap();
+  
+      $("img#cuadro-imagen")[0].setAttribute("src", "{% static 'core/img/sin-imagen.png' %}");
+    });
+  </script>
+
 {% endblock script %}

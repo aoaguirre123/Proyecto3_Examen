@@ -14,7 +14,7 @@
           Inicio de sesión
         </div>
 
-        <form method="POST" id="formulario_iniciar" name="formulario_iniciar">
+        <form method="POST" id="form" name="form">
 
           {% csrf_token %}
 
@@ -22,6 +22,7 @@
             <div class="card-body caja">
 
               {{ form|as_bootstrap_form }}
+              
 
             </div>
           </div>
