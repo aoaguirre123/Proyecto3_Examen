@@ -1,4 +1,4 @@
-# Proyecto_control_3
+# Proyecto Examen
 Tienda de videojuegos "Playopolis" con Django
 
 ## Grupo
